@@ -16,7 +16,7 @@ at_exit do
       unique_warnings[warning.source_location] ||= warning
     end
 
-    unqiue_warnings.each { |warning| warning.print }
+    unique_warnings.each_value { |warning| warning.print }
 
     $stderr.puts
   end
