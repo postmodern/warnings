@@ -24,16 +24,8 @@ module Warnings
   # @return [Warning]
   #   The warnings from the sub-path.
   #
-  def self.from_file(path)
-    if File.extname(path).empty?
-      # default the file extension to `.rb`
-      path = "#{path}.rb"
-    end
-
-    $WARNINGS.select do |warning|
-      (warning.source_file == path) ||
-      warning.source_file.end_with?("/#{path}")
-    end
+  def self.from(path)
+    $WARNINGS.select { |warning| warning.source_file.include?(path) }
   end
 
   #
