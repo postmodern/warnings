@@ -65,6 +65,19 @@ module Warnings
     end
 
     #
+    # Compares the warning message to a pattern.
+    #
+    # @param [Regexp] pattern
+    #   The pattern to match against.
+    #
+    # @return [Integer, nil]
+    #   The index of the pattern match within the warning message.
+    #
+    def =~(pattern)
+      @message =~ message
+    end
+
+    #
     # Converts the warning to a String.
     #
     # @return [String]
