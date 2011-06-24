@@ -92,6 +92,19 @@ module Warnings
     end
 
     #
+    # Compares the warning to another warning.
+    #
+    # @param [Warning] other
+    #   The other warning to compare against.
+    #
+    # @return [Boolean]
+    #   Specifies whether the two warnings represent the same message.
+    #
+    def ===(other)
+      !(@message.match(other).nil?)
+    end
+
+    #
     # Converts the warning to a String.
     #
     # @return [String]
