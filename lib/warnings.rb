@@ -10,7 +10,13 @@ at_exit do
     STDERR.puts "Warnings:"
     STDERR.puts
 
-    $WARNINGS.each { |warning| STDERR.puts "  #{warning.format}" }
+    unique_warnings = {}
+
+    $WARNINGS.each do |warning|
+      unique_warnings[warning.source_location] ||= warning
+    end
+
+    unqiue_warnings.each { |warning| warning.print }
 
     STDERR.puts
   end
