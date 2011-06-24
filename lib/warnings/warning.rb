@@ -135,12 +135,18 @@ module Warnings
     #   Will include ANSI color codes, only if `STDOUT` is a TTY Terminal.
     #
     def print
+      trace = unless $DEBUG
+                @backtrace[0,10]
+              else
+                @backtrace
+              end
+
       if $stderr.tty?
         $stderr.puts "\e[33m#{@message}:\e[0m"
-        @backtrace.each { |line| $stderr.puts "\t\e[2m#{line}\e[0m" }
+        trace.each { |line| $stderr.puts "\t\e[2m#{line}\e[0m" }
       else
         $stderr.puts "#{@message}:"
-        @backtrace.each { |line| $stderr.puts "\t#{line}" }
+        trace.each { |line| $stderr.puts "\t#{line}" }
       end
     end
 
