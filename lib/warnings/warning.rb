@@ -134,11 +134,13 @@ module Warnings
     # @note
     #   Will include ANSI color codes, only if `STDOUT` is a TTY Terminal.
     #
-    def format
-      if STDOUT.tty?
-        "\e[33m#{@message}\e[0m\t\t\e[2m#{source_file}:#{source_line}\e[0m"
+    def print
+      if $stderr.tty?
+        $stderr.puts "\e[33m#{@message}:\e[0m"
+        @backtrace.each { |line| $stderr.puts "\t\e[2m#{line}\e[0m" }
       else
-        "#{@message}\t\t#{source_file}:#{source_line}"
+        $stderr.puts "#{@message}:"
+        @backtrace.each { |line| $stderr.puts "\t#{line}" }
       end
     end
 
