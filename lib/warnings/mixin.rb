@@ -4,6 +4,33 @@ require 'warnings/warnings'
 module Warnings
   module Mixin
     #
+    # Enables or disables warnings.
+    #
+    # @param [Boolean] mode
+    #   Specifies whether warnings will be enabled or disabled.
+    #
+    # @return [Boolean]
+    #   Specifies whether warnings are enabled.
+    #
+    def warnings=(mode)
+      @warnings = mode
+    end
+
+    #
+    # Determines whether warnings are enabled.
+    #
+    # @return [Boolean]
+    #   Specifies whether warnings are enabled.
+    #
+    # @note
+    #   Enabling `$VERBOSE` (`ruby -w`) or `$DEBUG` (`ruby -d`) will
+    #   enable all warnings by default.
+    #
+    def warnings?
+      ($VERBOSE || $DEBUG) || (@warnings == true)
+    end
+
+    #
     # Registers a warning.
     #
     # @param [String] message
@@ -15,9 +42,12 @@ module Warnings
     # @return [nil]
     #
     def warn(message)
-      super(message) if $DEBUG
+      if warnings?
+        super(message) if $DEBUG
 
-      $WARNINGS << Warning.new(message,caller)
+        $WARNINGS << Warning.new(message,caller)
+      end
+
       return nil
     end
   end
