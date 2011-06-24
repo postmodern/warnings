@@ -133,7 +133,7 @@ module Warnings
     #
     def print
       trace = unless $DEBUG
-                @backtrace[0,10]
+                @backtrace[0,5]
               else
                 @backtrace
               end
