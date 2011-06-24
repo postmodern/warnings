@@ -92,9 +92,6 @@ module Warnings
       (@source_method == other.source_method)
     end
 
-    alias equal? ==
-    alias eql? ==
-
     #
     # Compares the warning to another warning.
     #
