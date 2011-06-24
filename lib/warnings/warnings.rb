@@ -42,8 +42,6 @@ module Warnings
               when Regexp
                 lambda { |warning| warning.source_method =~ name }
               else
-                name = name.to_s
-
                 lambda { |warning| warning.source_method == name }
               end
 
