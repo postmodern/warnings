@@ -88,8 +88,12 @@ module Warnings
     #
     def ==(other)
       (@message == other.message) &&
-      (@source_location == other.source_location)
+      (@source_location == other.source_location) &&
+      (@source_method == other.source_method)
     end
+
+    alias equal? ==
+    alias eql? ==
 
     #
     # Compares the warning to another warning.
@@ -101,7 +105,14 @@ module Warnings
     #   Specifies whether the two warnings represent the same message.
     #
     def ===(other)
-      !(@message.match(other).nil?)
+      case other
+      when Warning
+        self == other
+      when Regexp, String
+        !(@message.match(other).nil?)
+      else
+        false
+      end
     end
 
     #
