@@ -41,7 +41,7 @@ module Warnings
       file, line, context = @backtrace.first.split(':',3)
 
       @source_location = [file, line.to_i]
-      @source_method = context[4..-2] if context
+      @source_method = context[5..-2] if context
     end
 
     #

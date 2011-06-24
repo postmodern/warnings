@@ -27,7 +27,7 @@ module Warnings
     #   enable all warnings by default.
     #
     def warnings?
-      ($VERBOSE || $DEBUG) || (@warnings == true)
+      ($VERBOSE || $DEBUG) || (@warnings != false)
     end
 
     #

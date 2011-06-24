@@ -28,13 +28,6 @@ describe Warnings::Warning do
     subject.source_location.should be == [source_file, source_line]
   end
 
-  it "should format the warning" do
-    formatted = subject.format
-
-    formatted.should include(subject.message)
-    formatted.should include("#{source_file}:#{source_line}")
-  end
-
   it "should provide a #to_s method" do
     subject.to_s.should be == subject.message
   end
