@@ -139,10 +139,10 @@ module Warnings
               end
 
       if $stderr.tty?
-        $stderr.puts "\e[33m#{@message}:\e[0m"
+        $stderr.puts "  \e[33m#{@message}:\e[0m"
         trace.each { |line| $stderr.puts "\t\e[2m#{line}\e[0m" }
       else
-        $stderr.puts "#{@message}:"
+        $stderr.puts "  #{@message}:"
         trace.each { |line| $stderr.puts "\t#{line}" }
       end
     end
