@@ -15,6 +15,8 @@ module Warnings
     # @return [nil]
     #
     def warn(message)
+      super(message) if $DEBUG
+
       $WARNINGS << Warning.new(message,caller)
       return nil
     end
