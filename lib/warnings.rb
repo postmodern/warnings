@@ -6,9 +6,9 @@ include Warnings::Mixin
 
 at_exit do
   if (!$WARNINGS.empty? && ($VERBOSE || $DEBUG))
-    STDERR.puts
-    STDERR.puts "Warnings:"
-    STDERR.puts
+    $stderr.puts
+    $stderr.puts "Warnings:"
+    $stderr.puts
 
     unique_warnings = {}
 
@@ -18,6 +18,6 @@ at_exit do
 
     unqiue_warnings.each { |warning| warning.print }
 
-    STDERR.puts
+    $stderr.puts
   end
 end
