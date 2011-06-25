@@ -43,7 +43,7 @@ module Warnings
     #
     def warn(message)
       if warnings?
-        super(message) if $DEBUG
+        $stderr.puts(message) if $DEBUG
 
         $WARNINGS << Warning.new(message,caller)
       end
